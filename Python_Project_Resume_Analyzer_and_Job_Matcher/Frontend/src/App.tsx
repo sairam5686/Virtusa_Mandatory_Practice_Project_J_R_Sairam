@@ -14,7 +14,7 @@ const App = () => {
     formData.append("resume", Resume)
     try {
 
-      const res = await fetch("#" , {
+      const res = await fetch("http://127.0.0.1:8000/data/Jobdesc" , {
         method: "POST" , 
         body: formData
       })
