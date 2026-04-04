@@ -9,8 +9,9 @@ def Comparer_keywords(resume_words , job_desc_words):
             missing_words.append(i)
     
     analytics = {
-        "Matching_words ": matching_words , 
-        "Missing_words" : missing_words
+        "Matching_words": matching_words , 
+        "Missing_words" : missing_words, 
+        "Score": round((len(matching_words) / len(job_desc_words)) * 100, 2)
     }
     return analytics
 
