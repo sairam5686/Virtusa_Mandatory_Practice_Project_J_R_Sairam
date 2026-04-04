@@ -1,7 +1,7 @@
 import io
 from fastapi import FastAPI, File, Form, UploadFile
 from PdfExtractor import PdfExtractor
-
+from KeywordExtractor import KeywordExtractor
 
 # python -m uvicorn main:app --reload
 app = FastAPI()
@@ -19,5 +19,10 @@ async def upload_resume(jobDescription: str = Form(...), resume: UploadFile = Fi
     pdf_file = io.BytesIO(resume_content)
     extracted_text = PdfExtractor(pdf_file)
     print(extracted_text)
+    resume_keywords = KeywordExtractor(extracted_text)
+    jobDescription_keywords = KeywordExtractor(jobDescription)
+    
+    
+
 
     return {"nothing": "nothing to see here"}
