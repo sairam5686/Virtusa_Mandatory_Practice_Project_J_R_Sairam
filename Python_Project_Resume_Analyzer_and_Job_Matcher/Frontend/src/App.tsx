@@ -17,6 +17,8 @@ const App = () => {
         method: "POST",
         body: formData,
       })
+      console.log("NOthing");
+      
       const data = await res.json()
       console.log(data)
     } catch (error) {
@@ -53,9 +55,11 @@ const App = () => {
         </div>
       </header>
 
-      {/* Main */}
-      <main className="max-w-4xl mx-auto px-6 py-14">
-        {/* Page title */}
+      
+
+
+      <div className="max-w-4xl mx-auto px-6 py-14">
+    
         <div className="mb-12">
           <h1 className="text-3xl font-semibold tracking-tight text-neutral-900">Resume Analyzer</h1>
           <p className="mt-2 text-neutral-500 text-sm leading-relaxed">
@@ -64,7 +68,7 @@ const App = () => {
         </div>
 
         <form onSubmit={onSubmitHandler} className="space-y-10">
-          {/* Job Description */}
+
           <div className="space-y-2">
             <label className="block text-xs font-semibold uppercase tracking-widest text-neutral-400">
               Job Description
@@ -77,11 +81,17 @@ const App = () => {
             />
           </div>
 
-          {/* Resume Upload */}
+   
+
+
           <div className="space-y-2">
             <label className="block text-xs font-semibold uppercase tracking-widest text-neutral-400">
               Resume (PDF)
             </label>
+
+
+
+
 
             {!Resume ? (
               <div
@@ -92,12 +102,16 @@ const App = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                 </svg>
                 <p className="text-sm text-neutral-400 group-hover:text-neutral-600 transition">Click to upload your PDF</p>
+
+
+
                 <p className="text-xs text-neutral-300 mt-1">PDF only</p>
               </div>
             ) : (
               <div className="space-y-3">
-                {/* File info bar */}
+           
                 <div className="flex items-center justify-between bg-white border border-neutral-200 rounded-xl px-4 py-3">
+
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 bg-red-50 rounded-lg flex items-center justify-center">
                     <FaFileWaveform />
@@ -153,16 +167,12 @@ const App = () => {
 
           {/* Submit */}
           <div className="pt-2">
-            <button
-              type="submit"
-              disabled={!JobDesc.trim() || !Resume}
-              className="w-full bg-neutral-900 text-white text-sm font-medium py-3 rounded-xl hover:bg-neutral-700 disabled:opacity-30 disabled:cursor-not-allowed transition"
-            >
+            <button type="submit" disabled={!JobDesc.trim() || !Resume}  className="w-full bg-neutral-900 text-white text-sm font-medium py-3 rounded-xl hover:bg-neutral-700 disabled:opacity-30 disabled:cursor-not-allowed transition" >
               Analyze Resume
             </button>
           </div>
         </form>
-      </main>
+      </div>
     </div>
   )
 }

@@ -11,10 +11,8 @@ def KeywordExtractor(text):
     keywords = set()
     for token in  doc:
 
-        # remove stop words, punctuation, spaces
         if token.is_stop or token.is_punct or token.is_space:
             continue
-
         word = token.lemma_.lower()
       
         if word.isdigit() or len(word) <= 2:
