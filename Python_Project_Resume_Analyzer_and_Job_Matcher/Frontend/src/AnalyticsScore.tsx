@@ -38,7 +38,6 @@ useEffect(() => {
 
       <div className='flex flex-row gap-10'>
 
-      {/* for matchers indicators */}
       <div className='flex flex-col  boder-1  mt-5  w-[75%] border-black'>
         
         
