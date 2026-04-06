@@ -1,0 +1,20 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "Virtusa_project",
+            "password": "sairam@5686",
+            "connectionTimeout": 30,
+            "database": "virtusa",
+            "username": "root"
+        }
+    ]
+}
