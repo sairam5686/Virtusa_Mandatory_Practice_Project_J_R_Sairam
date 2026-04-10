@@ -13,6 +13,7 @@ Meanwhile, the compiled output files will be generated in the `bin` folder by de
 
 > If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
 
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+## TO run 
+## java -cp "lib/mysql-connector-j-9.6.0.jar;src" App (TO compile)
+## java -cp "lib/mysql-connector-j-9.6.0.jar;src" App (TO run )
+## cd Library_Management_System
