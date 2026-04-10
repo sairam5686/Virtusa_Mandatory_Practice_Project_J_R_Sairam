@@ -14,6 +14,6 @@ Meanwhile, the compiled output files will be generated in the `bin` folder by de
 > If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
 
 ## TO run 
-## java -cp "lib/mysql-connector-j-9.6.0.jar;src" App (TO compile)
+## javac -cp "lib/mysql-connector-j-9.6.0.jar" src/*.java (TO compile)
 ## java -cp "lib/mysql-connector-j-9.6.0.jar;src" App (TO run )
 ## cd Library_Management_System
