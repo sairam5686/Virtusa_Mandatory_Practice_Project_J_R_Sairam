@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router'
+import ReactMarkdown from "react-markdown";
 
 const AnalyticsScore = () => {
 
   
-  const [Ratings, setRatings] = useState("")
-  const { state: result } = useLocation();
-  console.log(result);
+const [Ratings, setRatings] = useState("")
+const { state: result } = useLocation();
+console.log(result);
+
+
 useEffect(() => {
-  
   if(result.Score >= 90){
     setRatings("Look Alright")
   }
@@ -21,6 +23,12 @@ useEffect(() => {
   }
 
 }, [])
+
+
+
+
+
+
 
             
   return (
@@ -74,7 +82,9 @@ useEffect(() => {
             </div>
         </div>
 
-     
+
+
+      
       </div>
 
 
@@ -83,7 +93,7 @@ useEffect(() => {
 
       
         
-      <div className='bg-gray-200 items-center w-[40%] flex flex-col mt-5 rounded-2xl'>
+      <div className='bg-gray-200 items-center w-[40%] h-[350px] flex flex-col mt-5 rounded-2xl'>
               
                 <p className='font-mono mt-20 font-bold text-gray-600'>
                   Your Matching Score
@@ -101,7 +111,7 @@ useEffect(() => {
 
 
                       <div className="absolute top-1/2 start-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-                        <span className="text-4xl font-bold text-blue-400">{result?.Score}</span>
+                        <span className="text-4xl text-center font-bold text-blue-400">{result?.Score}</span>
                         <span className="text-primary block">Score</span>
                       </div>
                     </div>
@@ -111,8 +121,20 @@ useEffect(() => {
                     {Ratings}
                     </h3>
 
+
+                    <div className='flex flex-col mt-10 rounded-2xl bg-gray-200 p-4   border-black '>
+        <h1 className='text-2xl font-semibold text-emerald-600'>AI Suggestion</h1>
+        <div className='h-75 overflow-scroll overflow-x-hidden'>
+        <ReactMarkdown>
+        {result?.LLM_Response}</ReactMarkdown>
+        </div>
       </div>
 
+     
+
+      </div>
+
+     
 
 
       </div>
