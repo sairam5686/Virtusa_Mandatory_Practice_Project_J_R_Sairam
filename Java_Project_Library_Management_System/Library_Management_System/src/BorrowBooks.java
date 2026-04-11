@@ -6,15 +6,11 @@ import java.sql.Statement;
 
 abstract class LibraryFunctions {
     abstract void BorrowBook(int user_id , int book_id);
-    abstract void ReturnBook(int borrow_id , String return_date);
-    
-
-    
+    abstract void ReturnBook(int borrow_id , String return_date);   
 }
 
 public class BorrowBooks extends LibraryFunctions {
     void BorrowBook(int user_id , int book_id){
-
         Connection connect = JdbcConnection.getConnection();
         try {
             Statement stmt = connect.createStatement();
@@ -70,7 +66,9 @@ public class BorrowBooks extends LibraryFunctions {
             Statement stmt = connect.createStatement();
             String Query = String.format("select * from borrowlist where borrow_id = %d" , borrow_id );
             ResultSet result  = stmt.executeQuery(Query);
-            if(result.next()){
+            if(result.next() && !result.getBoolean("is_returned")){
+               
+
                 String UpdateQuery = String.format("update books set quantity =quantity +  1 where  book_id = %d;" , result.getInt("book_id"));
                 stmt.executeUpdate(UpdateQuery);
                 

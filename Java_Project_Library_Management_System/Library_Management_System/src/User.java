@@ -14,7 +14,7 @@ public class User extends LibUser {
         try {
             Connection connect = JdbcConnection.getConnection();
             Statement state = connect.createStatement();
-            String Query = String.format("insert into users(user_id , name , email) value ( %s  , %s);" ,Name , Email );
+            String Query = String.format("insert into users( name , email) values ( '%s'  , '%s');" ,Name , Email );
             int result =  state.executeUpdate(Query);
             if(result == 1){
                 System.out.println("User has been Registered");
@@ -39,9 +39,9 @@ public class User extends LibUser {
             String Query = String.format("delete from users where user_id  =%d ;"  ,user_id );
             int result =  state.executeUpdate(Query);
             if(result == 1){
-                System.out.println("User has been Registered");
+                System.out.println("User has been Removed");
             }else{
-                System.out.println("User Cannot be registered");
+                System.out.println("User Cannot be removed");
             }
 
             state.close();

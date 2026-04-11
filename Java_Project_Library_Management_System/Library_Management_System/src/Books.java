@@ -16,7 +16,7 @@ public class Books extends LibraryBooks  {
      try {
          Connection connect = JdbcConnection.getConnection();
          Statement state = connect.createStatement();
-         String Query = String.format("INSERT INTO books(title , author , quantity ) VALUES (%s , %s , %d)", BookName,
+         String Query = String.format("INSERT INTO books(title , author , quantity ) VALUES ('%s' , '%s' , %d)", BookName,
                  BookAuthor, Quantity);
          int result = state.executeUpdate(Query);
          if (result == 1) {
@@ -43,6 +43,9 @@ public class Books extends LibraryBooks  {
         }else{
             System.out.println("Can find the Book with"+book_id +" as the Book id");
         }
+
+        state.close();
+        connect.close();
             
         } catch (Exception e) {
             System.out.println(e);
@@ -75,7 +78,7 @@ public class Books extends LibraryBooks  {
          try {
             Connection connect = JdbcConnection.getConnection();
             Statement state = connect.createStatement();
-            String Query = String.format("SELECT * FROM books WHERE author =%s and title = %s " , author , title); 
+            String Query = String.format("SELECT * FROM books WHERE author = '%s' and title = '%s';" , author , title); 
             ResultSet result =  state.executeQuery(Query);
             while (result.next()) {
                 System.out.println(result.getInt("book_id") + "|" 
