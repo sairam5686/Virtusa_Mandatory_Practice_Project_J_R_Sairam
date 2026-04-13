@@ -64,18 +64,21 @@ public class BorrowBooks extends LibraryFunctions {
         Connection connect = JdbcConnection.getConnection();
         try {
             Statement stmt = connect.createStatement();
+            Statement stmt2 = connect.createStatement();
+
             String Query = String.format("select * from borrowlist where borrow_id = %d" , borrow_id );
             ResultSet result  = stmt.executeQuery(Query);
+
+
             if(result.next() && !result.getBoolean("is_returned")){
-               
+                String ExpectedReturnDate = result.getString("return_date");
 
                 String UpdateQuery = String.format("update books set quantity =quantity +  1 where  book_id = %d;" , result.getInt("book_id"));
                 stmt.executeUpdate(UpdateQuery);
                 
                 String UpdateBorrowQuery = String.format( "update borrowlist set is_returned = TRUE where borrow_id = %d" , borrow_id );
-                stmt.executeUpdate(UpdateBorrowQuery);
+                stmt2.executeUpdate(UpdateBorrowQuery);
 
-                String ExpectedReturnDate = result.getString("return_date");
                 java.sql.Date dueDate = java.sql.Date.valueOf(ExpectedReturnDate);
                 java.sql.Date ActualReturnDate = java.sql.Date.valueOf(return_date);
 
@@ -100,6 +103,7 @@ public class BorrowBooks extends LibraryFunctions {
 
                 result.close();
              stmt.close();
+             stmt2.close();
             connect.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -107,7 +111,4 @@ public class BorrowBooks extends LibraryFunctions {
             
     }
 
- 
-
-    
 }

@@ -10,7 +10,6 @@ public  class JdbcConnection {
         String user = "root" ; 
         String password = "sairam@5686"; 
         con = DriverManager.getConnection(url, user, password);
-        System.out.println("Connected Successfully!");
         } catch (Exception e) {
             System.out.println(e);
         }
