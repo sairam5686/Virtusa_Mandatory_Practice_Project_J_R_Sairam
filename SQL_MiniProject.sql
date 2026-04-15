@@ -49,6 +49,7 @@ insert into Orders values (21 , 3 , '2026-01-05'),
 
 insert into Order_Items values (1,100,1) , (1,108,2) ,(2, 101, 1),(2 ,109, 1), (3,102,1),(3,114,3),(4,104,2),(4,  106,1),(5,105,2),(5,107 ,1) , (6,110,1), (6,114,2), (7,101,1),(7,108,1),(8,103,1),(8,109,2),(9,104,1),(9,114,4),(10,100,1),(10,108,1),(11,102,1),(11,107,2),(12,103,1),(12,114,2),(13,106,3),(14,105,1),(14,108,1),(15,112,1),(16,104,2),(16,109,1),(17,106,2),(18,100,1),(18,103,1),(19,105,1),(19,108,2),(20,114,5),(21,101,1),(21,106,2),(22,102,1),(23,107,2),(24,110,1),(25,100,1),(25,109,1),(26,111,1),(27,108,2),(28,104,1),(28,105,1),(29,106,3),(30,113,1),(31,102,1),(32,103,1),(32,114,2),(33,101,1) ,(34,107,2),(35,112,1),(35,108,1);
 
+
 -- for showing all the datas in the table 
 select * from Customers;
 select * from Products;
@@ -56,20 +57,20 @@ select * from Orders;
 select * from Order_Items;
 
 
--- for finding the top selling products (Query)
+-- to Find top-selling products
 select Products.name , sum(Order_Items.quantity) as "No of items sold" , Products.price from Order_Items left join Products on Order_Items.product_id = Products.product_id group by Order_Items.product_id order by sum(Order_items.quantity) desc;
 
 -- for identifying most valuable customers
 select Customers.name , sum(Order_Items.quantity * Products.price) as "Total amt spent by the customer"  from Customers join Orders on Customers.customer_id  = Orders.customer_id join Order_Items on Orders.order_id = Order_Items.order_id join Products on Order_Items.product_id = Products.product_id group by Customers.customer_id order by sum(Order_Items.quantity * Products.price) desc;
 
--- Monthly (Sorted Yearly) revenue calculation descending order
+--to find Monthly (Sorted Yearly) revenue calculation descending order
 select year(Orders.date) as "Year" , month(Orders.date) as "Month"  , sum(Products.price * Order_Items.quantity) as "Monthly revenue" from Orders join Order_Items on Orders.order_id = Order_Items.order_id join Products on Products.product_id = Order_Items.product_id group by year(Orders.date) , month(Orders.date) order by year(Orders.date) ,  month(Orders.date) desc ;
 
--- Yearly Revenue
+-- to find Yearly Revenue
 select year(Orders.date) as "Year" , sum(Products.price * Order_Items.quantity) as "Yearly revenue" from Orders join Order_Items on Orders.order_id = Order_Items.order_id join Products on Products.product_id = Order_Items.product_id group by year(Orders.date) order by year(Orders.date) desc ;
 
--- Category wise sales 
+-- to find Category wise sales 
 select Products.category , sum(Order_Items.quantity) as "Total Items sold" from Order_Items join Products on Order_Items.product_id = Products.product_id group by Products.category order by sum(Order_Items.quantity) desc;
 
--- inactive customers
+--to find inactive customers
 select name from Customers where customer_id not in (select customer_id  from Orders);
