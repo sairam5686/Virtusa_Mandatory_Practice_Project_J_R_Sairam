@@ -31,7 +31,7 @@ public class BorrowBooks extends LibraryFunctions {
 
 
                     System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++ ");
-                    System.out.println("Book Has Been Successfully Issued to the User with" + user_id  );
+                    System.out.println("Book Has Been Successfully Issued to the User with userid of " + user_id  );
                     System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++ ");
                     
 
