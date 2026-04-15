@@ -60,6 +60,38 @@ public class BorrowBooks extends LibraryFunctions {
         }
     }
 
+    void viewBorrowlist(){
+        Connection connect = JdbcConnection.getConnection();
+        try {
+            Statement stmt = connect.createStatement();
+            ResultSet result  = stmt.executeQuery("select * from borrowlist");
+            while (result.next()) {
+                int borrowId = result.getInt("borrow_id");
+            int userId = result.getInt("user_id");
+            int bookId = result.getInt("book_id");
+            String issueDate = result.getString("issue_date");
+            String returnDate = result.getString("return_date");
+            int isReturned = result.getInt("is_returned");
+            System.out.println("Borrow_id | user_id | book_id | issueDate | returnDate | isReturned ");
+            System.out.println(
+                borrowId + " | " +
+                userId + " | " +
+                bookId + " | " +
+                issueDate + " | " +
+                returnDate + " | " +
+                isReturned
+            );
+                
+                
+            }
+
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     void ReturnBook(int borrow_id , String return_date){
         Connection connect = JdbcConnection.getConnection();
         try {

@@ -19,7 +19,6 @@ public class App {
         do {
         System.out.println("******************************LIBARAY MANAGEMENT SYSTEM **************************");
         System.out.println("------User Options ---------");
-        System.out.println(" 0 . Exit");
         System.out.println("1 . Register User");
         System.out.println("2 . Remove User");
         System.out.println("3 . View User");
@@ -33,6 +32,7 @@ public class App {
         System.out.println("--------Borrow or Return Books options --------");
         System.out.println("8 . Borrow Book ");
         System.out.println("9 . Return Book ");
+        System.out.println("0.View Borrow list");
 
         options = scan.nextInt();
         scan.nextLine();
@@ -103,8 +103,8 @@ public class App {
                 break;
             
             case 0:
-                System.out.println("Exiting the system ,  Thank you for using Library management System");
-                break ; 
+                borrowbooks.viewBorrowlist();
+                break;
 
 
             default:
