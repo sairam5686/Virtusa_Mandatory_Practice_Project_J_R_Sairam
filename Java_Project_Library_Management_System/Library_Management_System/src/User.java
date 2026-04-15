@@ -61,6 +61,7 @@ public class User extends LibUser {
             Statement state = connect.createStatement();
             ResultSet result =  state.executeQuery("select * from users;");
             System.out.println("User List");
+            System.out.println("User ID | Name | Email");
             while (result.next()) {
                 System.out.println("-----------------------------------------------");
                 System.out.println(result.getInt("user_id") + "|" 

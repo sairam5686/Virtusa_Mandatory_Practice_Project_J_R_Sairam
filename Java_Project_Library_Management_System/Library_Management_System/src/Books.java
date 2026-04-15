@@ -58,6 +58,7 @@ public class Books extends LibraryBooks  {
             Connection connect = JdbcConnection.getConnection();
             Statement state = connect.createStatement();
             ResultSet result =  state.executeQuery("select * from books;");
+            System.out.println("Book ID | Title | Author | Quantity");
             while (result.next()) {
                 System.out.println(result.getInt("book_id") + "|" 
                 + result.getString("title") + "|" + result.getString("author") 
