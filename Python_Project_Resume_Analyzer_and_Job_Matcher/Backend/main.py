@@ -32,7 +32,7 @@ async def upload_resume(jobDescription: str = Form(...), resume: UploadFile = Fi
     jobDescription_keywords =KeywordExtractor(jobDescription)
     
     
-    genai.configure(api_key="ENTER YOU API ")
+    genai.configure(api_key="AIzaSyC0qfnJDLjfjk36I8WQAc1RAGrL3PngJoI")
     model = genai.GenerativeModel("gemini-2.5-flash" , 
                                   system_instruction ="you are an professional resume analyser,your task is to give suggestions to improve resume based on job description and resume text provided" )
     content = f"Here is the job description {jobDescription} and here is the resume texts {extracted_text} "
