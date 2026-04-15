@@ -65,6 +65,7 @@ public class BorrowBooks extends LibraryFunctions {
         try {
             Statement stmt = connect.createStatement();
             ResultSet result  = stmt.executeQuery("select * from borrowlist");
+            System.out.println("Borrow_id | user_id | book_id | issueDate | returnDate | isReturned ");
             while (result.next()) {
                 int borrowId = result.getInt("borrow_id");
             int userId = result.getInt("user_id");
@@ -72,7 +73,7 @@ public class BorrowBooks extends LibraryFunctions {
             String issueDate = result.getString("issue_date");
             String returnDate = result.getString("return_date");
             int isReturned = result.getInt("is_returned");
-            System.out.println("Borrow_id | user_id | book_id | issueDate | returnDate | isReturned ");
+
             System.out.println(
                 borrowId + " | " +
                 userId + " | " +
@@ -85,7 +86,9 @@ public class BorrowBooks extends LibraryFunctions {
                 
             }
 
-            
+            result.close();
+            stmt.close();
+            connect.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
