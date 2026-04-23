@@ -200,7 +200,7 @@ Make a Java + JDBC -based console application with the following features:
 ```
 cd Java_Project_Library_Management_System\Library_Management_System
 javac -cp "lib/mysql-connector-j-9.6.0.jar" src/*.java
-ava -cp "lib/mysql-connector-j-9.6.0.jar;src" App
+java -cp "lib/mysql-connector-j-9.6.0.jar;src" App
 ```
 ## DB Structure for Libary management system
 <img src="./Images/image.png" >
