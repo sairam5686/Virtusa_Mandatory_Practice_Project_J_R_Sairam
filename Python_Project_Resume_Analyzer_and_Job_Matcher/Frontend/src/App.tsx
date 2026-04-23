@@ -8,10 +8,13 @@ const App = () => {
   const [Resume, setResume] = useState<any>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
-
+const [loading, setLoading] = useState(false)
 
   const onSubmitHandler = async (e: any) => {
     e.preventDefault()
+    if (loading) return  
+    setLoading(true)
+
     const formData = new FormData()
     formData.append("jobDescription", JobDesc)
     formData.append("resume", Resume)
@@ -172,8 +175,7 @@ const App = () => {
           {/* Submit */}
           <div className="pt-2">
             <button type="submit" disabled={!JobDesc.trim() || !Resume}  className="w-full bg-neutral-900 text-white text-sm font-medium py-3 rounded-xl hover:bg-neutral-700 disabled:opacity-30 disabled:cursor-not-allowed transition" >
-              Analyze Resume
-            </button>
+              {loading ? "Analyzing..." : "Analyze Resume"}            </button>
           </div>
         </form>
       </div>

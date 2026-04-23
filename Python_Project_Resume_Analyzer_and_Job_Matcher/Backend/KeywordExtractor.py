@@ -19,7 +19,7 @@ def KeywordExtractor(text):
             continue
 
 
-        if any(x in word for x in ["with", "using", "focused"]):
+        if any(x in word for x in ["with", "using", "focused", "solve" , "strong" , "required"  , "like"]):
             continue
 
         keywords.add(word)

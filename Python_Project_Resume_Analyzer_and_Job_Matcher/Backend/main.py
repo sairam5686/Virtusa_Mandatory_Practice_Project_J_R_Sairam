@@ -11,7 +11,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  
+    allow_origins=["http://localhost:5173" ,  "http://127.0.0.1:5173"],  
 
     allow_credentials=True,
     allow_methods=["*"],
@@ -32,16 +32,24 @@ async def upload_resume(jobDescription: str = Form(...), resume: UploadFile = Fi
     jobDescription_keywords =KeywordExtractor(jobDescription)
     
     
-    genai.configure(api_key="AIzaSyC0qfnJDLjfjk36I8WQAc1RAGrL3PngJoI")
+    genai.configure(api_key="AIzaSyDMDp3qrlr9ST1hGccNIp7TrGB2voaVG2I")
     model = genai.GenerativeModel("gemini-2.5-flash" , 
                                   system_instruction ="you are an professional resume analyser,your task is to give suggestions to improve resume based on job description and resume text provided" )
     content = f"Here is the job description {jobDescription} and here is the resume texts {extracted_text} "
     print("AI Content" , content)
     
-    llm_response = model.generate_content(content)
-    print(llm_response.text)
 
-    Comparer =  Comparer_keywords(resume_kyeword, jobDescription_keywords , llm_response.text)
+    try:
+        llm_response = model.generate_content(content)
+        
+        ai_text = llm_response.text if llm_response.text else "No suggestions generated"
+
+    except Exception as e:   
+        print("LLM ERROR:", e)
+        ai_text = "AI service unavailable due to api request is exceeded. Basic keyword comparison is provided."
+
+
+    Comparer =  Comparer_keywords(resume_kyeword, jobDescription_keywords , ai_text)
     return Comparer
 
 
